@@ -34,6 +34,29 @@ console.log('fuori scoop', gameDifficulties)
 const bombs = 16;
 const numberOfBombs = generateBombs(gameDifficulties, 1, bombs)
 console.log('fuori scoop', numberOfBombs)
+// numero massimo di tentativi 
+const maxAttempts = gameDifficulties - bombs;  
+console.log(maxAttempts)
+// Logica del gioco 
+let gameContinues = true;
+while (gameContinues) {
+    const userNumbers = parseInt(prompt('Dimmi un numero'))
+    if(numberOfBombs.includes(userNumbers)) {
+        gameContinues = false;
+        alert ('Hai perso')
+    } else {
+        // Pusho numero azzeccato in un array vuoto
+       if(!succesfulNumber.includes(userNumbers)) {
+            succesfulNumber.push(userNumbers);
+       }
+
+       if(succesfulNumber.length === maxAttempts) {
+            gameContinues = false;
+            alert('Hai vinto');
+       }
+    }
+}
+
 
 // Function 
 
@@ -41,18 +64,15 @@ console.log('fuori scoop', numberOfBombs)
 // numberOfElements -> numero di elementi dell'array
 // rangeMin -> Range minimo dei numeri generati (1)
 // rangemax -> Range massimo dei numeri generati (16)
-
-
 function generateBombs(numberOfElements,rangeMin, rangeMax) {
-  const randomNumbersArray = []
-  for ( i = 0; i <= rangeMax; i++) {
-    const randomNumbers = getRndInteger(rangeMin, numberOfElements)
-    // Push solo se non è presente nell'array. Tutti numeri unici
-    if (!randomNumbersArray.includes(randomNumbers)) {
-        randomNumbersArray.push(randomNumbers)
-    }
-  
-  }
+    const randomNumbersArray = []
+        while (randomNumbersArray.length < rangeMax) {
+            const randomNumbers = getRndInteger(rangeMin, numberOfElements);
+            // Push solo se non è presente nell'array. Tutti numeri unici
+            if (!randomNumbersArray.includes(randomNumbers)) {
+                randomNumbersArray.push(randomNumbers)
+            }
+        }
   return randomNumbersArray
 }
 
