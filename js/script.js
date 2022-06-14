@@ -31,26 +31,32 @@ if (userChoice === 1) {
 console.log('fuori scoop', gameDifficulties)
 
 // Dichiariamo quante bombe ci sono nel gioco (16) e generiamole
-const numberOfBombs = 16;
+const bombs = 16;
+const numberOfBombs = generateBombs(gameDifficulties, 1, bombs)
+console.log('fuori scoop', numberOfBombs)
 
-let randomNumbers= []
+// Function 
+
+// Generiamo un Array con X numero di bombe
+// numberOfElements -> numero di elementi dell'array
+// rangeMin -> Range minimo dei numeri generati (1)
+// rangemax -> Range massimo dei numeri generati (16)
 
 
-for (let i = 0; i <= 16; i++) {
-   andomNumbers = Math.floor(Math.random() * (gameDifficulties - 1 + 1) ) + 1;
-    // console.log(randomnumbers)
- 
-}
-
-console.log(randomNumbers)
-
-function randomBombs(min, gameDifficulties) {
-    for (let i = 0; i < 16; i++) {
-        mathrandom = Math.floor(Math.random() * (gameDifficulties - min + 1) ) + min;
+function generateBombs(numberOfElements,rangeMin, rangeMax) {
+  const randomNumbersArray = []
+  for ( i = 0; i <= rangeMax; i++) {
+    const randomNumbers = getRndInteger(rangeMin, numberOfElements)
+    // Push solo se non è presente nell'array. Tutti numeri unici
+    if (!randomNumbersArray.includes(randomNumbers)) {
+        randomNumbersArray.push(randomNumbers)
     }
-    return mathrandom
+  
+  }
+  return randomNumbersArray
 }
 
-const randomBombs1 = randomBombs(1, gameDifficulties)
-console.log('qui bomberandom',randomBombs1)
 
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
