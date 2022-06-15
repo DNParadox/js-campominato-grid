@@ -39,6 +39,7 @@ const maxAttempts = gameDifficulties - bombs;
 console.log(maxAttempts)
 // Logica del gioco 
 let gameContinues = true;
+let succesfulNumber = []
 while (gameContinues) {
     const userNumbers = parseInt(prompt('Dimmi un numero'))
     if(numberOfBombs.includes(userNumbers)) {
